@@ -21,7 +21,7 @@ Bu eğitim, teoriyi atlamayan, pratiğe dayalı **uygulamalı** bir eğitimdir.
 - 1.1. Giriş: Kapsam
 - 1.2. Gerekli Araçlar ve Kurulumlar (Node.js, VSCode, vb.)
 - 1.3. Projeyi Vite ile Oluşturma (React + TypeScript)
-- 1.4.TailwindCSS Kurulumu ve Ayarları
+- 1.4. TailwindCSS Kurulumu ve Ayarları
 
 ---
 
