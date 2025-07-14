@@ -75,78 +75,11 @@ export default defineConfig({
 
 ---
 
-## 💎 Shadcn/ui Kurulumu
-
-👉 [Resmi Dokümantasyon](https://ui.shadcn.com/docs/installation/vite)
-
-### ✅ `tsconfig.json` içinde `compilerOptions` sonuna ekle:
-
-```json
-"baseUrl": ".",
-"paths": {
-  "@/*": ["./src/*"]
-}
-```
-
-### ✅ `tsconfig.app.json` içinde:
-
-```json
-"baseUrl": ".",
-"paths": {
-  "@/*": ["./src/*"]
-}
-```
-
-### ✅ Node tiplerini devDependency olarak ekle:
-
-```bash
-npm add -D @types/node
-```
-
-### ✅ `vite.config.ts` dosyasına alias tanımı ekle:
-
-```ts
-import path from "path";
-
-export default defineConfig({
-  plugins: [react(), tailwindcss()],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
-  },
-});
-```
-
-### ✅ Shadcn başlatma ve bileşen ekleme:
-
-```bash
-npx shadcn@latest init
-# Bir stil seçin: neutral
-
-npx shadcn@latest add button
-```
-
-### 🧩 Komponent örneği: `components/ui/button.tsx`
-
-### ✅ Projede kullanımı:
-
-```tsx
-import { Button } from "./components/ui/button";
-
-<div className="flex min-h-svh flex-col items-center justify-center">
-  <Button>Merhaba Shad</Button>
-</div>;
-```
-
----
-
 ## 📌 Özet
 
-Şu ana kadar yaptıkların:
+Şu ana kadar:
 
-- ✔️ Vite + React + TypeScript proje yapısını kurdun
-- ✔️ TailwindCSS ile modern stil altyapısı ekledin
-- ✔️ shadcn/ui bileşenleri ile UI'yi geliştirmeye başladın
+- ✔️ Vite + React + TypeScript proje yapısını kurduk
+- ✔️ TailwindCSS ile modern stil altyapısı ekledik
 
-Artık projende **modern**, **sade** ve **performanslı** bir yapı hazır durumda.
+Artık projede **modern**, **sade** ve **performanslı** bir yapı hazır durumda.

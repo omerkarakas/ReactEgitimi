@@ -21,13 +21,15 @@ Bu eğitim, teoriyi atlamayan, pratiğe dayalı **uygulamalı** bir eğitimdir.
 - 1.1. Giriş: Kapsam
 - 1.2. Gerekli Araçlar ve Kurulumlar (Node.js, VSCode, vb.)
 - 1.3. Projeyi Vite ile Oluşturma (React + TypeScript)
+- 1.4.TailwindCSS Kurulumu ve Ayarları
 
 ---
 
 ### 🎨 2. UI ve Stil Altyapısını Hazırlama
 
-- 2.1. TailwindCSS Kurulumu ve Yapılandırması
-- 2.2. shadcn/ui Entegrasyonu ve Bileşen Kullanımı
+- 2.1. TailwindCSS ile Bileşen Oluşturma
+- 2.2. Bileşenleri Parçalama ve Yeniden Kullanım
+- 2.3. Karanlık Mod ve Temalandırma
 
 ---
 
