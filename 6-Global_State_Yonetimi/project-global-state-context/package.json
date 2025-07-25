@@ -1,5 +1,5 @@
 {
-  "name": "project-global-state",
+  "name": "project-global-state-context",
   "private": true,
   "version": "0.0.0",
   "type": "module",
