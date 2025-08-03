@@ -11,7 +11,7 @@ const Sayac = () => {
     <div className="text-center space-y-4 border-2 p-4 rounded-xl">
       <p className="text-2xl font-bold">{sayi}</p>
       <button
-        className="bg-blue-600 text-white px-4 py-2 rounded"
+        className="px-4 py-2 rounded"
         onClick={() => {
           setSayi(sayi + 1);
           console.log("sayi:", sayi);
@@ -22,7 +22,7 @@ const Sayac = () => {
 
       {/* islem uzun sürecekse async await kullanılmalı, ve setSayi'da parametere olarak fonksiyon kullanılmalı */}
       <button
-        className="bg-blue-600 text-white px-4 py-2 rounded"
+        className="px-4 py-2 rounded"
         onClick={async () => {
           await wait(1000);
           //   setSayi(sayi - 1);

@@ -17,7 +17,7 @@ const GirisFormu = () => {
         className="border px-3 py-2 rounded w-full"
         placeholder="E-posta adresiniz"
       />
-      <button className="bg-green-600 text-white px-4 py-2 rounded">Gönder</button>
+      <button className="px-4 py-2 rounded">Gönder</button>
     </form>
   );
 };

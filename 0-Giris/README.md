@@ -1,11 +1,11 @@
-# ⚙️ React için JavaScript ve TypeScript’e giriş
+# ⚙️ React Geliştiricileri için JavaScript ve TypeScript
 
 ## 📌 Özet
 
 ### 🎯 Konular:
 
-- JavaScript’e Giriş
-- TypeScript’e Giriş
+- React Geliştiricileri için JavaScript
+- React Geliştiricileri için TypeScript
 
 ### 📚 Dersin Konusu / Ünite:
 
@@ -17,7 +17,7 @@
 
 ## 💻 React Geliştiricileri için JavaScript
 
-React geliştirirken sık karşılaşacağımız **modern JavaScript** özelliklerini kısa ve öz şekilde öğreniyoruz:
+React geliştirirken en sık karşılaştığımız modern **JavaScript** özellikleri:
 
 ### 1. `const`, `let`, `var` Farkları
 
@@ -99,7 +99,7 @@ const yas = kullanici.yas ?? 18; // yoksa 18 ata
 
 ## 🟦 React Geliştiricileri için TypeScript
 
-React bileşenleri yazarken karşılaşacağımız temel **TypeScript kavramları**:
+React bileşenleri yazarken karşılaşacağımız temel **TypeScript özellikleri**:
 
 ### 1. Tür (Type) Tanımlama
 
