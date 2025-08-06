@@ -1,40 +1,44 @@
-// src/App.test.tsx
+import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import App from "./App";
-import { describe, it, expect } from "vitest"; // Jest kullanıyorsan vitest yerine jest kullan
 
-describe("Todo App", () => {
-  it("başlık doğru şekilde render edilir", () => {
+describe("App bileşeni", () => {
+  it("Başlık görünür olmalı", () => {
     render(<App />);
-    expect(screen.getByText("Todo App")).toBeInTheDocument();
+    expect(screen.getByText(/Yapılacaklar Listesi/i)).toBeTruthy();
   });
 
-  it("girdi alanı çalışır durumda olmalı", async () => {
+  it("Henüz görev yok mesajı liste boşken görünür", () => {
     render(<App />);
-    const input = screen.getByPlaceholderText("Yeni görev");
-    await userEvent.type(input, "Kitap oku");
-    expect(input).toHaveValue("Kitap oku");
+    expect(screen.getByText(/Henüz görev yok./i)).toBeTruthy();
   });
 
-  it("yeni görev listeye eklenmeli", async () => {
+  it("Görev eklenince listeye yeni öğe eklenir", async () => {
     render(<App />);
-    const input = screen.getByPlaceholderText("Yeni görev");
-    const button = screen.getByText("Ekle");
+    const input = screen.getByRole("textbox");
+    const ekleButton = screen.getByRole("button", { name: /ekle/i });
 
-    await userEvent.type(input, "Yürüyüş yap");
-    await userEvent.click(button);
+    await userEvent.type(input, "Test Görevi");
+    await userEvent.click(ekleButton);
 
-    expect(screen.getByText("Yürüyüş yap")).toBeInTheDocument();
+    expect(screen.queryByText(/Henüz görev yok./i)).toBeNull();
+    expect(screen.getByText("Test Görevi")).toBeTruthy();
   });
 
-  it("boş görev eklenmemeli", async () => {
+  it("Görev sil butonuna tıklayınca görev listeden çıkar", async () => {
     render(<App />);
-    const button = screen.getByText("Ekle");
+    const input = screen.getByRole("textbox");
+    const ekleButton = screen.getByRole("button", { name: /ekle/i });
 
-    await userEvent.click(button);
-    const listItems = screen.queryAllByRole("listitem");
+    await userEvent.type(input, "Silinecek Görev");
+    await userEvent.click(ekleButton);
 
-    expect(listItems.length).toBe(0);
+    expect(screen.getByText("Silinecek Görev")).toBeTruthy(); // toBeInTheDocument();
+
+    const silButton = screen.getByRole("button", { name: /sil/i });
+    await userEvent.click(silButton);
+
+    expect(screen.queryByText("Silinecek Görev")).toBeNull();
   });
 });
