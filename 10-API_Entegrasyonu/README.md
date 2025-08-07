@@ -1,115 +1,330 @@
-# 🚀 Uygulamalı React.js Eğitimi
+# React ile API Entegrasyonu
 
-## 🔧 Yöntem
+## Özet
 
-Bu eğitim, teoriyi atlamayan, pratiğe dayalı **uygulamalı** bir eğitimdir.
+**Konular:**
 
-## ❓ Ön Koşul
+- Fetch / Axios.get
+- POST, PUT ve DELETE örnekleri
 
-- Temel düzeyde **JavaScript**, **TypeScript**, **HTML** ve **CSS** bilgisi yeterlidir.
+**Dersin Konusu veya Ünite:** API ile entegrasyon  
+**Düzey:** Başlangıç / Orta  
+**Amaç:** API servisleri ile entegrasyonu öğrenmek  
+**Süre:** 40dk
 
----
+## Uygulama Bilgisi
 
-## 📚 Eğitim Kapsamı
+API entegrasyonu, uygulamanın dış veri kaynaklarına (örneğin bir backend servis, bir REST API veya JSON verisi sunan üçüncü taraf bir servis) bağlanmasıdır.
 
-### 🔰 0. JavaScript ve TypeScript’e Giriş
+React'te API çağrıları genellikle:
 
----
-
-### 🔰 1. Projeye Başlangıç
-
-- 1.1. Giriş: Kapsam
-- 1.2. Gerekli Araçlar ve Kurulumlar (Node.js, VSCode, vb.)
-- 1.3. Projeyi Vite ile Oluşturma (React + TypeScript)
-- 1.4. TailwindCSS Kurulumu ve Ayarları
-
----
-
-### 🎨 2. UI ve Stil Altyapısını Hazırlama
-
-- 2.1. TailwindCSS ile Bileşen Oluşturma
-- 2.2. Bileşenleri Parçalama ve Yeniden Kullanım
-- 2.3. Karanlık Mod ve Temalandırma
+- `useEffect` içinde yapılır (component mount olduğunda veri çekmek için)
+- `useState` ile veri saklanır
+- `fetch` veya `axios` gibi araçlar kullanılır
 
 ---
 
-### 🧱 3. Temel React Kavramları
+## Basit API Çağrısı Örneği (fetch ile)
 
-- 3.1. Fonksiyonel Bileşenler (Functional Components)
-- 3.2. JSX Nedir? HTML Gibi Ama Değil
-- 3.3. Props Kullanımı: Veri Aktarımı
-- 3.4. useState ile İçsel (Internal) State Yönetimi
-- 3.5. useEffect ile Yan Etkiler (API Çağrısı Örneği)
+```tsx
+// constants.ts
+export const API_URL = "https://jsonplaceholder.typicode.com";
+```
+
+```tsx
+// components/UserList.tsx
+import { useEffect, useState } from "react";
+
+type User = {
+  id: number;
+  name: string;
+  email: string;
+};
+
+export default function UserList() {
+  const [users, setUsers] = useState<User[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(`${API_URL}/users`)
+      .then((res) => res.json())
+      .then((data: User[]) => {
+        setUsers(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Hata:", err);
+        setLoading(false);
+      });
+  }, []);
+
+  return (
+    <div className="p-4">
+      <h2 className="text-xl font-bold mb-4">Kullanıcılar (fetch)</h2>
+      {loading ? (
+        <p>Yükleniyor...</p>
+      ) : (
+        <ul className="space-y-2 p-4">
+          {users.map((user) => (
+            <li key={user.id} className="border p-2 rounded">
+              <p className="font-semibold">{user.name}</p>
+              <p className="text-sm text-gray-600">{user.email}</p>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+```
+
+## Axios ile (Aynı Örnek)
+
+```bash
+npm i axios
+```
+
+```tsx
+// components/UserListAxios.tsx
+import axios from "axios";
+import { useEffect, useState } from "react";
+
+type User = {
+  id: number;
+  name: string;
+  email: string;
+};
+
+export default function UserListAxios() {
+  const [users, setUsers] = useState<User[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    axios
+      .get<User[]>(`${API_URL}/users`)
+      .then((res) => {
+        setUsers(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Hata:", err);
+        setLoading(false);
+      });
+  }, []);
+
+  return (
+    <div className="p-4">
+      <h2 className="text-xl font-bold mb-4">Kullanıcılar (axios)</h2>
+      {loading ? (
+        <p>Yükleniyor...</p>
+      ) : (
+        <ul className="space-y-2 p-4">
+          {users.map((user) => (
+            <li key={user.id} className="border p-2 rounded">
+              <p className="font-semibold">{user.name}</p>
+              <p className="text-sm text-gray-600">{user.email}</p>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+```
 
 ---
 
-### 🧭 4. Uygulamalı Mini Proje: Basit Görev Listesi (Todo App)
+## API'ye Veri Gönderme (POST)
 
-- 4.1. Input ile görev ekleme
-- 4.2. Görevleri listeleme
-- 4.3. Görev silme ve tamamlama
-- 4.4. Bileşen yapısına ayırma (Reusable Components)
+> JSONPlaceholder sahte bir API’dir, POST verinizi gerçekten kaydetmez.
+
+```tsx
+// components/UserForm.tsx
+import { useState } from "react";
+
+type User = {
+  name: string;
+  email: string;
+};
+
+export default function UserForm() {
+  const [user, setUser] = useState<User>({ name: "", email: "" });
+  const [message, setMessage] = useState("");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setUser((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const response = await fetch(`${API_URL}/users`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    });
+
+    if (response.ok) {
+      const createdUser: User = await response.json();
+      setMessage(`Kullanıcı eklendi: ${createdUser.name}`);
+      setUser({ name: "", email: "" });
+    } else {
+      setMessage("Bir hata oluştu.");
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4">
+      <h2 className="text-xl font-bold">Yeni Kullanıcı Ekle</h2>
+      <input
+        type="text"
+        name="name"
+        value={user.name}
+        onChange={handleChange}
+        placeholder="İsim"
+        className="w-full p-2 border rounded"
+        required
+      />
+      <input
+        type="email"
+        name="email"
+        value={user.email}
+        onChange={handleChange}
+        placeholder="E-posta"
+        className="w-full p-2 border rounded"
+        required
+      />
+      <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">
+        Gönder
+      </button>
+      {message && <p className="text-green-700">{message}</p>}
+    </form>
+  );
+}
+```
 
 ---
 
-### 🪢 5. Component Mimarisi ve Props Derinlemesine
+## Kullanıcı Güncelleme (PUT) ve Silme (DELETE)
 
-- 5.1. Props Drilling Nedir?
-- 5.2. Daha Temiz Props Kullanımı (TypeScript ile)
-- 5.3. UI Bileşenlerini shadcn ile Zenginleştirme
+```tsx
+// components/UserListUpdateDelete.tsx
+import { useState, useEffect } from "react";
+
+type User = {
+  id: number;
+  name: string;
+  email: string;
+};
+
+export default function UserListUpdateDelete() {
+  const [users, setUsers] = useState<User[]>([]);
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [editName, setEditName] = useState("");
+  const [editEmail, setEditEmail] = useState("");
+
+  useEffect(() => {
+    fetch(`${API_URL}/users?_limit=5`)
+      .then((res) => res.json())
+      .then(setUsers);
+  }, []);
+
+  const handleDelete = async (id: number) => {
+    await fetch(`${API_URL}/users/${id}`, {
+      method: "DELETE",
+    });
+    setUsers(users.filter((user) => user.id !== id));
+  };
+
+  const handleEdit = (user: User) => {
+    setSelectedUser(user);
+    setEditName(user.name);
+    setEditEmail(user.email);
+  };
+
+  const handleUpdate = async () => {
+    if (!selectedUser) return;
+
+    const updatedUser = {
+      ...selectedUser,
+      name: editName,
+      email: editEmail,
+    };
+
+    const res = await fetch(`${API_URL}/users/${selectedUser.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedUser),
+    });
+
+    const data = await res.json();
+
+    setUsers(users.map((u) => (u.id === selectedUser.id ? { ...u, ...data } : u)));
+    setSelectedUser(null);
+  };
+
+  return (
+    <div className="max-w-xl mx-auto space-y-4">
+      <h2 className="text-2xl font-bold mb-2">Kullanıcılar</h2>
+      <ul className="space-y-2">
+        {users.map((user) => (
+          <li key={user.id} className="border p-2 rounded flex justify-between">
+            <div>
+              <p className="font-semibold">{user.name}</p>
+              <p className="text-sm text-gray-600">{user.email}</p>
+            </div>
+            <div className="space-x-2">
+              <button onClick={() => handleEdit(user)} className="text-blue-600 hover:underline">
+                Düzenle
+              </button>
+              <button onClick={() => handleDelete(user.id)} className="text-red-600 hover:underline">
+                Sil
+              </button>
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      {selectedUser && (
+        <div className="mt-6 p-4 border rounded bg-gray-50">
+          <h3 className="font-bold mb-2">Kullanıcıyı Güncelle</h3>
+          <input
+            value={editName}
+            onChange={(e) => setEditName(e.target.value)}
+            className="w-full border p-2 mb-2 rounded"
+            placeholder="İsim"
+          />
+          <input
+            value={editEmail}
+            onChange={(e) => setEditEmail(e.target.value)}
+            className="w-full border p-2 mb-2 rounded"
+            placeholder="E-posta"
+          />
+          <button onClick={handleUpdate} className="bg-green-600 text-white px-4 py-2 rounded">
+            Güncelle
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+```
 
 ---
 
-### 🧠 6. Global State Yönetimi: Redux Toolkit ile
+## Özet
 
-- 6.1. Redux Toolkit Nedir? Kurulum ve Yapı
-- 6.2. Store Yapısının Oluşturulması
-- 6.3. Slice'lar ile Modüler Yapı
-- 6.4. useSelector & useDispatch Kullanımı
-- 6.5. Local ve Global State’in Farkları
-
----
-
-### 🌐 7. Routing: Sayfa Geçişleri (React Router)
-
-- 7.1. React Router Kurulumu
-- 7.2. Sayfa Bileşenleri Oluşturma
-- 7.3. Link, Navigate ve useParams Kullanımı
-
----
-
-### 💡 8. Formlar ve Validasyon
-
-- 8.1. Controlled Components
-- 8.2. React Hook Form Kullanımı
-- 8.3. Yup ile Validasyon Entegrasyonu
-- 8.4. shadcn/ui + React Hook Form ile Şık Formlar
-
----
-
-### 📦 9. API Entegrasyonu
-
-- 9.1. Fetch & Axios ile Veri Çekme
-- 9.2. Redux + createAsyncThunk ile Asenkron Veri Yönetimi
-- 9.3. Loading ve Hata Yönetimi
-
----
-
-### 🧪 10. Bonus: Gelişmiş Konular (Opsiyonel)
-
-- 10.1. Context API vs Redux Karşılaştırması
-- 10.2. Custom Hook Oluşturma
-- 10.3. Performans İyileştirme: `memo`, `useCallback`
-- 10.4. dark mode, temalandırma (Tailwind + shadcn/ui)
-
----
-
-### ✅ 11. Proje Derleme ve Yayınlama
-
-- 11.1. Projeyi Üretime Hazırlama
-- 11.2. `vite build` ve optimizasyon
-- 11.3. Netlify / Vercel ile Deploy
-
----
-
-> Bu döküman, eğitimi sistematik ve anlaşılır biçimde takip etmenizi kolaylaştırmak için hazırlanmıştır.
+- `useEffect` ile veri çekme
+- `useState` ile veri ve loading yönetimi
+- `fetch` ve `axios` ile GET isteği
+- TypeScript ile veri tipi tanımlama
+- Hata yakalama (`catch`)
+- Form inputlarını `useState` ile kontrol etme
+- POST, PUT, DELETE istekleri ile API entegrasyonu
+- JSON.stringify ile veri gönderme
+- CRUD işlemleri uygulaması

@@ -1,5 +1,6 @@
 // components/UserForm.tsx
 import { useState } from "react";
+import { API_URL } from "../constants";
 
 export type User = {
   name: string;
@@ -20,7 +21,7 @@ export default function UserForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const response = await fetch("https://jsonplaceholder.typicode.com/users", {
+    const response = await fetch(`${API_URL}/users`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

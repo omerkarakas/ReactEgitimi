@@ -1,6 +1,7 @@
 // components/UserListAxios.tsx
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { API_URL } from "../constants";
 
 type User = {
   id: number;
@@ -14,7 +15,7 @@ export default function UserListAxios() {
 
   useEffect(() => {
     axios
-      .get<User[]>("https://jsonplaceholder.typicode.com/users")
+      .get<User[]>(`${API_URL}/users`)
       .then((res) => {
         setUsers(res.data);
         setLoading(false);

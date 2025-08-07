@@ -1,5 +1,6 @@
 // components/UserListUpdateDelete.tsx
 import { useState, useEffect } from "react";
+import { API_URL } from "../constants";
 
 type User = {
   id: number;
@@ -14,13 +15,13 @@ export default function UserListUpdateDelete() {
   const [editEmail, setEditEmail] = useState("");
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users?_limit=5")
+    fetch(`${API_URL}/users?_limit=5`)
       .then((res) => res.json())
       .then(setUsers);
   }, []);
 
   const handleDelete = async (id: number) => {
-    await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+    await fetch(`${API_URL}/users/${id}`, {
       method: "DELETE",
     });
     setUsers(users.filter((user) => user.id !== id));
@@ -41,7 +42,7 @@ export default function UserListUpdateDelete() {
       email: editEmail,
     };
 
-    const res = await fetch(`https://jsonplaceholder.typicode.com/users/${selectedUser.id}`, {
+    const res = await fetch(`${API_URL}/users/${selectedUser.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

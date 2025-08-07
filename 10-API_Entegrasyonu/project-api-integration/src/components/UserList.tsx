@@ -1,5 +1,6 @@
 // components/UserList.tsx
 import { useEffect, useState } from "react";
+import { API_URL } from "../constants";
 
 type User = {
   id: number;
@@ -12,7 +13,7 @@ export default function UserList() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
+    fetch(`${API_URL}/users`)
       .then((res) => res.json())
       .then((data: User[]) => {
         setUsers(data);
