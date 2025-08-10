@@ -10,6 +10,7 @@ import DashboardLayout from "./pages/DashboardLayout";
 import DashboardHome from "./pages/DashboardHome";
 import DashboardProfile from "./pages/DashboardProfile";
 import Login from "./pages/Login";
+import Products from "./pages/Products";
 
 const App = () => {
   console.log("A new render...");
@@ -38,6 +39,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="products" element={<Products />} />
           <Route path="*" element={<NotFound />} />
 
           {/* advanced routing */}
