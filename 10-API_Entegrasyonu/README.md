@@ -34,6 +34,7 @@ export const API_URL = "https://jsonplaceholder.typicode.com";
 ```tsx
 // components/UserList.tsx
 import { useEffect, useState } from "react";
+import { API_URL } from "../constants";
 
 type User = {
   id: number;
@@ -88,6 +89,7 @@ npm i axios
 // components/UserListAxios.tsx
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { API_URL } from "../constants";
 
 type User = {
   id: number;
@@ -141,6 +143,7 @@ export default function UserListAxios() {
 ```tsx
 // components/UserForm.tsx
 import { useState } from "react";
+import { API_URL } from "../constants";
 
 type User = {
   name: string;
@@ -213,6 +216,7 @@ export default function UserForm() {
 ```tsx
 // components/UserListUpdateDelete.tsx
 import { useState, useEffect } from "react";
+import { API_URL } from "../constants";
 
 type User = {
   id: number;
