@@ -1,5 +1,7 @@
 # 🚀 Uygulamalı React.js Eğitimi
 
+Bu repository, React.js öğrenmek isteyenler için hazırlanmış **uygulamalı**, sistematik ve kapsamlı bir eğitim kaynağıdır. Bölümler halinde organize edilmiş ve her bölümde konuyla ilgili bağımsız notlar ve örnekler bulunmaktadır.
+
 ## 🔧 Yöntem
 
 Bu eğitim, teoriyi atlamayan, pratiğe dayalı **uygulamalı** bir eğitimdir.
@@ -10,106 +12,123 @@ Bu eğitim, teoriyi atlamayan, pratiğe dayalı **uygulamalı** bir eğitimdir.
 
 ---
 
-## 📚 Eğitim Kapsamı
+## Eğitim İçeriği
 
-### 🔰 0. JavaScript ve TypeScript’e Giriş
+Aşağıdaki bölümler, eğitim boyunca işlenen başlıkları ve temel kazanımları özetlemektedir:
 
----
+### 0-Giriş
 
-### 🔰 1. Projeye Başlangıç
+React ve ön gereksinimler hakkında genel tanıtım, eğitimde kullanılacak javascript ve typescript dillerine hızlı giriş.
 
-- 1.1. Giriş: Kapsam
-- 1.2. Gerekli Araçlar ve Kurulumlar (Node.js, VSCode, vb.)
-- 1.3. Projeyi Vite ile Oluşturma (React + TypeScript)
-- 1.4. TailwindCSS Kurulumu ve Ayarları
+### 1-Projeye Başlangıç
 
----
+React + TypeScript projesinin Vite ile oluşturulması, TailwindCSS kurulumu ve temel ayarların yapılması.
 
-### 🎨 2. UI ve Stil Altyapısını Hazırlama
+### 2-UI ve Stil Altyapısı
 
-- 2.1. TailwindCSS ile Bileşen Oluşturma
-- 2.2. Bileşenleri Parçalama ve Yeniden Kullanım
-- 2.3. Karanlık Mod ve Temalandırma
+TailwindCSS ile komponent oluşturma, parçalama ve karanlık mod temalarını uygulama teknikleri.
 
----
+### 3-Temel React Kavramları
 
-### 🧱 3. Temel React Kavramları
+Fonksiyonel bileşenler, JSX kullanımı, Props ile veri aktarımı, useState ve useEffect temel React hookları.
 
-- 3.1. Fonksiyonel Bileşenler (Functional Components)
-- 3.2. JSX Nedir? HTML Gibi Ama Değil
-- 3.3. Props Kullanımı: Veri Aktarımı
-- 3.4. useState ile İçsel (Internal) State Yönetimi
-- 3.5. useEffect ile Yan Etkiler (API Çağrısı Örneği)
+### 4-Uygulamalı Mini Proje: Basit Görev Listesi (Todo App)
 
----
+Görev ekleme, listeleme, silme, tamamlama ve yeniden kullanılabilir bileşen yapısı.
 
-### 🧭 4. Uygulamalı Mini Proje: Basit Görev Listesi (Todo App)
+### 5-Component Mimarisi ve Props
 
-- 4.1. Input ile görev ekleme
-- 4.2. Görevleri listeleme
-- 4.3. Görev silme ve tamamlama
-- 4.4. Bileşen yapısına ayırma (Reusable Components)
+Props drilling, daha temiz props kullanımı ve UI bileşenlerinin zenginleştirilmesi.
 
----
+### 6-Global State Yönetimi: Redux Toolkit
 
-### 🪢 5. Component Mimarisi ve Props Derinlemesine
+Redux Toolkit kurulumu, store yapısı, slice’lar ile modüler yapı, useSelector ve useDispatch kullanımı.
 
-- 5.1. Props Drilling Nedir?
-- 5.2. Daha Temiz Props Kullanımı (TypeScript ile)
-- 5.3. UI Bileşenlerini shadcn ile Zenginleştirme
+### 7-Routing: Sayfa Geçişleri (React Router)
 
----
+React Router kurulumu, sayfa bileşenleri, Link, Navigate ve useParams kullanımı.
 
-### 🧠 6. Global State Yönetimi: Redux Toolkit ile
+### 8-Formlar ve Validasyon
 
-- 6.1. Redux Toolkit Nedir? Kurulum ve Yapı
-- 6.2. Store Yapısının Oluşturulması
-- 6.3. Slice'lar ile Modüler Yapı
-- 6.4. useSelector & useDispatch Kullanımı
-- 6.5. Local ve Global State’in Farkları
+Controlled components, React Hook Form, Yup doğrulama entegrasyonu ve şık formlar oluşturma.
 
----
+### 9-API Entegrasyonu
 
-### 🌐 7. Routing: Sayfa Geçişleri (React Router)
+Fetch & Axios ile veri çekme, createAsyncThunk ile asenkron veri yönetimi, loading ve hata yönetimi.
 
-- 7.1. React Router Kurulumu
-- 7.2. Sayfa Bileşenleri Oluşturma
-- 7.3. Link, Navigate ve useParams Kullanımı
+### 10-Bonus: Gelişmiş Konular
+
+Context API ve Redux karşılaştırması, custom hook oluşturma, performans iyileştirmeleri (memo, useCallback), karanlık mod ve temalandırma.
+
+### 11-Proje Derleme ve Yayınlama
+
+Projeyi üretime hazırlama, `vite build` komutu ile optimizasyon, Netlify ve Vercel ile deploy işlemleri.
+
+### 12-React ile Test Yazımı
+
+(Jenerik içerik, eğer varsa) React bileşenleri için test teknikleri ve araçları.
+
+### 13-React Performans Optimizasyonu
+
+(Jenerik içerik, eğer varsa) Performans analizleri ve optimizasyon stratejileri.
+
+### 14-Build ve Dockerfile
+
+Projeyi build etme süreci ve Dockerfile ile containerize edilmesi.
 
 ---
 
-### 💡 8. Formlar ve Validasyon
+## Ön Koşullar
 
-- 8.1. Controlled Components
-- 8.2. React Hook Form Kullanımı
-- 8.3. Yup ile Validasyon Entegrasyonu
-- 8.4. shadcn/ui + React Hook Form ile Şık Formlar
+- Temel JavaScript, TypeScript bilgisi
+- HTML ve CSS temelleri
 
 ---
 
-### 📦 9. API Entegrasyonu
+## Kullanılan Teknolojiler ve Araçlar
 
-- 9.1. Fetch & Axios ile Veri Çekme
-- 9.2. Redux + createAsyncThunk ile Asenkron Veri Yönetimi
-- 9.3. Loading ve Hata Yönetimi
-
----
-
-### 🧪 10. Bonus: Gelişmiş Konular (Opsiyonel)
-
-- 10.1. Context API vs Redux Karşılaştırması
-- 10.2. Custom Hook Oluşturma
-- 10.3. Performans İyileştirme: `memo`, `useCallback`
-- 10.4. dark mode, temalandırma (Tailwind + shadcn/ui)
+- React.js
+- TypeScript
+- Vite
+- TailwindCSS
+- Redux Toolkit
+- React Router
+- React Hook Form
+- Axios / Fetch API
+- Docker (Build ve konteynerizasyon için)
 
 ---
 
-### ✅ 11. Proje Derleme ve Yayınlama
+## Kurulum
 
-- 11.1. Projeyi Üretime Hazırlama
-- 11.2. `vite build` ve optimizasyon
-- 11.3. Netlify / Vercel ile Deploy
+### Depoyu klonlayın
+
+git clone https://github.com/omerkarakas/ReactEgitimi.git
+
+### Proje klasörüne gidin
+
+cd ReactEgitimi
+
+### Bağımlılıkları yükleyin
+
+npm install
+
+### Uygulamayı başlatın
+
+npm run dev
 
 ---
 
-> Bu döküman, eğitimi sistematik ve anlaşılır biçimde takip etmenizi kolaylaştırmak için hazırlanmıştır.
+## Katkıda Bulunma
+
+Bu proje açık kaynaklı olup, katkılarınızı bekleriz. Hatalar veya iyileştirme önerileri için pull request açabilir veya issue oluşturabilirsiniz.
+
+---
+
+## Lisans
+
+Bu eğitim içeriği [Lisans türünüzü belirtin] lisansı ile lisanslanmıştır.
+
+---
+
+React.js öğrenmek isteyenler için kapsamlı, uygulamalı ve adım adım ilerleyen bu eğitim, temel kavramlardan ileri düzey tekniklere kadar geniş bir yelpazede rehberlik sağlar.
