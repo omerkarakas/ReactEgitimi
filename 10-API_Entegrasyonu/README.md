@@ -57,6 +57,36 @@ export default function UserList() {
         console.error("Hata:", err);
         setLoading(false);
       });
+
+// YA DA ASYNC/AWAIT ile
+    // const getUsers = async () => {
+    //     try {
+    //     const resp = await fetch(`${API_URL}/users`);
+    //     console.log("resp:",resp);
+
+    //     if (!resp.ok){
+    //         console.log("hata:", resp.status);
+    //         setLoading(false);
+    //         return;
+    //     }
+
+    //     const data:User[] = await resp.json();
+    //     setUsers(data);
+    //     } catch (error) {
+    //         if(error instanceof Error){
+    //             console.error("Hata:", error?.message);
+    //         }
+    //         setLoading(false);
+    //     }
+
+    //     setLoading(false);
+
+    // }
+
+    // getUsers();
+
+
+
   }, []);
 
   return (
