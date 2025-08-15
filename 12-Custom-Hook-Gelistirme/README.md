@@ -84,7 +84,8 @@ export default function Counter() {
 ### Bir başka bileşende kullanım
 
 ```tsx
-// components/AnotherCounter.tsx
+import { useCounter } from "../hooks/useCounter";
+
 function AnotherCounter() {
   const { count, increment } = useCounter();
 
@@ -95,6 +96,8 @@ function AnotherCounter() {
     </div>
   );
 }
+
+export default AnotherCounter;
 ```
 
 ---
