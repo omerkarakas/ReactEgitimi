@@ -296,6 +296,9 @@ export default DashboardProfile;
 
 ```tsx
 // src/App.tsx
+
+<Route path="/login" element={<Login />} />;
+
 <Route path="/dashboard" element={<DashboardLayout />}>
   <Route path="home" element={<DashboardHome />} />
   <Route path="profile" element={<DashboardProfile />} />
