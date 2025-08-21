@@ -142,7 +142,7 @@ const UserDetail = () => {
 export default UserDetail;
 
 // src/App.tsx
-<Route path="/users/:id" element={<UserDetail />} />;
+<Route path="/user/:id" element={<UserDetail />} />;
 ```
 
 ## 7. Search Parametreleri (Query Parameters)
